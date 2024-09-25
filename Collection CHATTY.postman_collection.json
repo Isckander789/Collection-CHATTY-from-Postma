@@ -1,0 +1,472 @@
+{
+	"info": {
+		"_postman_id": "fe9290fc-a3b2-4bdd-ba2e-ea07b2d09418",
+		"name": "Collection CHATTY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37829782"
+	},
+	"item": [
+		{
+			"name": "Request  /user/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response Content-Type header is 'text/html'\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Presence of required HTML elements and attributes\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"    \r",
+							"    pm.expect(responseData).to.include('form-login');\r",
+							"    pm.expect(responseData).to.include('loginform-username');\r",
+							"    pm.expect(responseData).to.include('loginform-password');\r",
+							"    pm.expect(responseData).to.include('btn-primary');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Ensure the presence and functionality of the login form\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"\r",
+							"    pm.expect(responseData).to.include('form-login');\r",
+							"    pm.expect(responseData).to.include('LoginForm[username]');\r",
+							"    pm.expect(responseData).to.include('LoginForm[password]');\r",
+							"    pm.expect(responseData).to.include('Login');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"loginform-username\": \"string\",\r\n  \"loginform-password\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://chatty.pulsardev.ru/user/login",
+					"protocol": "http",
+					"host": [
+						"chatty",
+						"pulsardev",
+						"ru"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request  /post/create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Content-Type header is set to text/html\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"text/html\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Presence of specific HTML elements\", function () {\r",
+							"    const htmlContent = pm.response.text();\r",
+							"\r",
+							"    pm.expect(htmlContent).to.include('<nav');\r",
+							"    pm.expect(htmlContent).to.include('<a');\r",
+							"    pm.expect(htmlContent).to.include('<ul');\r",
+							"    pm.expect(htmlContent).to.include('<li');\r",
+							"    pm.expect(htmlContent).to.include('<form');\r",
+							"    pm.expect(htmlContent).to.include('<input');\r",
+							"    pm.expect(htmlContent).to.include('<button');\r",
+							"    pm.expect(htmlContent).to.include('<script');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"post-title\": \"string\",\r\n  \"post-description\": \"string\",\r\n  \"post-content\": \"string\",\r\n  \"post-is_draft\": \"string\",\r\n  \"post-delayed_till\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://chatty.pulsardev.ru/post/create",
+					"protocol": "http",
+					"host": [
+						"chatty",
+						"pulsardev",
+						"ru"
+					],
+					"path": [
+						"post",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request /post/Index",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response includes necessary CSS and JavaScript file references\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"    \r",
+							"    pm.expect(responseData).to.include('/theme/css/bootstrap.min.css');\r",
+							"    pm.expect(responseData).to.include('/theme/fontawesome/css/all.min.css');\r",
+							"    pm.expect(responseData).to.include('/theme/css/custom.css');\r",
+							"    pm.expect(responseData).to.include('/theme/js/jquery-3.7.1.min.js');\r",
+							"    pm.expect(responseData).to.include('/theme/js/bootstrap.bundle.min.js');\r",
+							"    pm.expect(responseData).to.include('/theme/js/vue@3.min.js');\r",
+							"    pm.expect(responseData).to.include('/theme/js/custom.js');\r",
+							"    pm.expect(responseData).to.include('/theme/js/vue.custom.js');\r",
+							"    pm.expect(responseData).to.include('/assets/640e4d72/yii.js');\r",
+							"    pm.expect(responseData).to.include('/assets/640e4d72/yii.activeForm.js');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://chatty.pulsardev.ru/post/index?page=1&created_by=me&sort=-created_at",
+					"protocol": "http",
+					"host": [
+						"chatty",
+						"pulsardev",
+						"ru"
+					],
+					"path": [
+						"post",
+						"index"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "created_by",
+							"value": "me"
+						},
+						{
+							"key": "sort",
+							"value": "-created_at"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request /post/view/{id789}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response has the required fields\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"\r",
+							"    pm.expect(responseData).to.include('<title>Chatty</title>');\r",
+							"    pm.expect(responseData).to.include('<meta');\r",
+							"    pm.expect(responseData).to.include('<link');\r",
+							"    pm.expect(responseData).to.include('<script');\r",
+							"    pm.expect(responseData).to.include('<body');\r",
+							"    pm.expect(responseData).to.include('<footer');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate the response body contains the expected HTML structure\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include('<!DOCTYPE html>');\r",
+							"    pm.expect(pm.response.text()).to.include('<html lang=\"en_US\">');\r",
+							"    pm.expect(pm.response.text()).to.include('<head>');\r",
+							"    pm.expect(pm.response.text()).to.include('<meta charset=\"UTF-8\">');\r",
+							"    pm.expect(pm.response.text()).to.include('<title>Chatty</title>');\r",
+							"    pm.expect(pm.response.text()).to.include('<body class=\"d-flex flex-column h-100\">');\r",
+							"    pm.expect(pm.response.text()).to.include('<nav class=\"navbar navbar-light bg-light navbar-expand-lg\">');\r",
+							"    pm.expect(pm.response.text()).to.include('<main role=\"main\" class=\"py-4 px-3 overflow-auto container\">');\r",
+							"    pm.expect(pm.response.text()).to.include('<footer class=\"footer mt-auto border-top\">');\r",
+							"    pm.expect(pm.response.text()).to.include('<script src=\"/theme/js/vue.custom.js\"></script>');\r",
+							"    pm.expect(pm.response.text()).to.include('<script src=\"/assets/640e4d72/yii.js\"></script>');\r",
+							"    pm.expect(pm.response.text()).to.include('<script>jQuery(function ($) {');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body contains expected form fields for login\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"\r",
+							"    pm.expect(responseData).to.include('form-login');\r",
+							"    pm.expect(responseData).to.include('loginform-username');\r",
+							"    pm.expect(responseData).to.include('LoginForm[username]');\r",
+							"    pm.expect(responseData).to.include('loginform-password');\r",
+							"    pm.expect(responseData).to.include('LoginForm[password]');\r",
+							"    pm.expect(responseData).to.include('btn-primary');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://chatty.pulsardev.ru/post/view/789",
+					"protocol": "http",
+					"host": [
+						"chatty",
+						"pulsardev",
+						"ru"
+					],
+					"path": [
+						"post",
+						"view",
+						"789"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request /post/update/{id789}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Validate the response schema for required HTML elements and attributes\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"\r",
+							"    pm.expect(responseData).to.include('<html lang=\"en_US\">');\r",
+							"    pm.expect(responseData).to.include('<meta charset=\"UTF-8\">');\r",
+							"    pm.expect(responseData).to.include('<link rel=\"shortcut icon\" href=\"/theme/img/favicon.png\" type=\"image/x-icon\">');\r",
+							"    pm.expect(responseData).to.include('<title>Chatty</title>');\r",
+							"    pm.expect(responseData).to.include('<link href=\"/theme/css/bootstrap.min.css\" rel=\"stylesheet\">');\r",
+							"    pm.expect(responseData).to.include('<link href=\"/theme/fontawesome/css/all.min.css\" rel=\"stylesheet\">');\r",
+							"    pm.expect(responseData).to.include('<link href=\"/theme/css/custom.css\" rel=\"stylesheet\">');\r",
+							"    pm.expect(responseData).to.include('<script src=\"/theme/js/jquery-3.7.1.min.js\"></script>');\r",
+							"    pm.expect(responseData).to.include('<script src=\"/theme/js/bootstrap.bundle.min.js\"></script>');\r",
+							"    pm.expect(responseData).to.include('<script src=\"/theme/js/vue@3.min.js\"></script>');\r",
+							"    pm.expect(responseData).to.include('<script src=\"/theme/js/custom.js\"></script>');\r",
+							"    pm.expect(responseData).to.include('<nav class=\"navbar navbar-light bg-light navbar-expand-lg\">');\r",
+							"    pm.expect(responseData).to.include('<a class=\"navbar-brand\" href=\"/\">Chatty</a>');\r",
+							"    pm.expect(responseData).to.include('<button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbar-main\"');\r",
+							"    pm.expect(responseData).to.include('<ul class=\"navbar-nav me-auto mb-2 mb-lg-0\">');\r",
+							"    pm.expect(responseData).to.include('<li class=\"nav-item\">');\r",
+							"    pm.expect(responseData).to.include('<a class=\"nav-link\" href=\"/\">About</a>');\r",
+							"    pm.expect(responseData).to.include('<li class=\"nav-item\">');\r",
+							"    pm.expect(responseData).to.include('<a class=\"nav-link\" href=\"/contact\">Contact</a>');\r",
+							"    pm.expect(responseData).to.include('<form class=\"d-flex\">');\r",
+							"    pm.expect(responseData).to.include('<a class=\"nav-link\" href=\"/user/login\">Login</a>');\r",
+							"    pm.expect(responseData).to.include('<main role=\"main\" class=\"py-4 px-3 overflow-auto container\">');\r",
+							"    pm.expect(responseData).to.include('<footer class=\"footer mt-auto border-top\">');\r",
+							"    pm.expect(responseData).to.include('<h1>Login</h1>');\r",
+							"    pm.expect(responseData).to.include('<form id=\"form-login\" class=\"form-ajax\" action=\"/user/login\" method=\"post\">');\r",
+							"    pm.expect(responseData).to.include('<div class=\"mb-3 field-loginform-username required\">');\r",
+							"    pm.expect(responseData).to.include('<label class=\"form-label\" for=\"loginform-username\">Username</label>');\r",
+							"    pm.expect(responseData).to.include('<input type=\"text\" id=\"loginform-username\" class=\"form-control\" name=\"LoginForm[username]\" autofocus aria-required=\"true\">');\r",
+							"    pm.expect(responseData).to.include('<div class=\"mb-3 field-loginform-password required\">');\r",
+							"    pm.expect(responseData).to.include('<label class=\"form-label\" for=\"loginform-password\">Password</label>');\r",
+							"    pm.expect(responseData).to.include('<input type=\"password\" id=\"loginform-password\" class=\"form-control\" name=\"LoginForm[password]\" value=\"\" aria-required=\"true\">');\r",
+							"    pm.expect(responseData).to.include('<button type=\"submit\" class=\"btn btn-primary btn-block\">Login</button>');\r",
+							"    pm.expect(responseData).to.include('<div class=\"container-fluid my-3\">');\r",
+							"    pm.expect(responseData).to.include('&copy; Chatty 2024');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"post-title\": \"string\",\r\n  \"post-description\": \"string\",\r\n  \"post-content\": \"string\",\r\n  \"post-is_draft\": \"string\",\r\n  \"post-delayed_till\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://chatty.pulsardev.ru/post/update/789",
+					"protocol": "http",
+					"host": [
+						"chatty",
+						"pulsardev",
+						"ru"
+					],
+					"path": [
+						"post",
+						"update",
+						"789"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Request /contact/index",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Presence of required HTML elements\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"\r",
+							"    pm.expect(responseData).to.include('form id=\"form-login\"');\r",
+							"    pm.expect(responseData).to.include('<input type=\"text\" id=\"loginform-username\"');\r",
+							"    pm.expect(responseData).to.include('<input type=\"password\" id=\"loginform-password\"');\r",
+							"    pm.expect(responseData).to.include('<button type=\"submit\" class=\"btn btn-primary btn-block\">Login</button>');\r",
+							"    pm.expect(responseData).to.include('<a class=\"nav-link\" href=\"/user/login\">Login</a>');\r",
+							"    pm.expect(responseData).to.include('<a class=\"nav-link\" href=\"/\">About</a>');\r",
+							"    pm.expect(responseData).to.include('<a class=\"nav-link\" href=\"/contact\">Contact</a>');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Ensure that the HTML structure follows the expected schema with appropriate tags and attributes\", function () {\r",
+							"    const expectedTags = [\"html\", \"head\", \"meta\", \"link\", \"title\", \"body\", \"nav\", \"a\", \"button\", \"ul\", \"li\", \"form\", \"main\", \"div\", \"h1\", \"input\", \"footer\", \"script\"];\r",
+							"    \r",
+							"    const responseData = pm.response.text();\r",
+							"    \r",
+							"    expectedTags.forEach(tag => {\r",
+							"        pm.expect(responseData).to.include(`<${tag}`);\r",
+							"    });\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"contact-name\": \"string\",\r\n  \"contact-email\": \"string\",\r\n  \"contact-content\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://chatty.pulsardev.ru/contact/index",
+					"protocol": "http",
+					"host": [
+						"chatty",
+						"pulsardev",
+						"ru"
+					],
+					"path": [
+						"contact",
+						"index"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
